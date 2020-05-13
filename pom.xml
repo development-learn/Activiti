@@ -16,7 +16,7 @@
   <description>BPM and workflow engine</description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>1.7</java.version>
+    <java.version>1.8</java.version>
     <!-- Dependency versions -->
     <batik.version>1.9.1</batik.version>
     <bouncycastle.version>1.59</bouncycastle.version>
@@ -46,8 +46,11 @@
     <argLine>-Duser.language=en</argLine>
     <!-- OSGi bundles properties -->
     <activiti.artifact/>
+    <!--suppress UnresolvedMavenProperty -->
     <activiti.osgi.import.activiti.version>version="[$(version;==;${activiti.osgi.version.clean}),$(version;=+;${activiti.osgi.version.clean}))"</activiti.osgi.import.activiti.version>
+    <!--suppress UnresolvedMavenProperty -->
     <activiti.osgi.import.strict.version>version="[$(version;===;${activiti.osgi.version.clean}),$(version;==+;${activiti.osgi.version.clean}))"</activiti.osgi.import.strict.version>
+    <!--suppress UnresolvedMavenProperty -->
     <activiti.osgi.import.default.version>[$(version;==;$(@)),$(version;+;$(@)))</activiti.osgi.import.default.version>
     <activiti.osgi.import.defaults></activiti.osgi.import.defaults>
     <activiti.osgi.import.before.defaults/>
@@ -766,7 +769,9 @@
             <_versionpolicy>${activiti.osgi.import.default.version}</_versionpolicy>
             <_removeheaders>${activiti.osgi.remove.headers}</_removeheaders>
             <_failok>${activiti.osgi.failok}</_failok>
+            <!--suppress UnresolvedMavenProperty -->
             <Export-Service>${activiti.osgi.export.service}</Export-Service>
+            <!--suppress UnresolvedMavenProperty -->
             <Import-Service>${activiti.osgi.import.service}</Import-Service>
             <Embed-Dependency>${activiti.osgi.embed}</Embed-Dependency>
           </instructions>
@@ -829,6 +834,7 @@
           <configuration>
             <mavenExecutorId>forked-path</mavenExecutorId>
             <useReleaseProfile>false</useReleaseProfile>
+            <!--suppress UnresolvedMavenProperty -->
             <arguments>${arguments} -Psonatype-oss-release</arguments>
           </configuration>
         </plugin>
