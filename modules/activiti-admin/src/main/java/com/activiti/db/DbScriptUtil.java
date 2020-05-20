@@ -26,8 +26,10 @@ import liquibase.resource.ClassLoaderResourceAccessor;
 public class DbScriptUtil {
 
     public static void main(String... args) throws Exception {
-        dropSchema();
+//        dropSchema();
+        createSchema();
     }
+
 
     public static void dropSchema() throws Exception {
         System.out.println("Dropping schema");
@@ -39,10 +41,20 @@ public class DbScriptUtil {
 
         closeDatabase(database, databaseConnection);
     }
+    public static void createSchema() throws Exception {
+        System.out.println("Crateing schema");
+        DatabaseConnection databaseConnection = createDbConnection();
+        Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(databaseConnection);
+
+        Liquibase liquibase = new Liquibase("META-INF/liquibase/db-changelog.xml", new ClassLoaderResourceAccessor(), database);
+        liquibase.update("");
+
+        closeDatabase(database, databaseConnection);
+    }
 
     protected static DatabaseConnection createDbConnection() throws Exception {
         Properties properties = new Properties();
-        properties.load(DbScriptUtil.class.getClassLoader().getResourceAsStream("META-INF/activiti-admin/TEST-db.properties"));
+        properties.load(DbScriptUtil.class.getClassLoader().getResourceAsStream("META-INF/activiti-admin/activiti-admin.properties"));
         Connection connection = DriverManager.getConnection(properties.getProperty("datasource.url"),
                 properties.getProperty("datasource.username"), properties.getProperty("datasource.password"));
         DatabaseConnection databaseConnection = new JdbcConnection(connection);

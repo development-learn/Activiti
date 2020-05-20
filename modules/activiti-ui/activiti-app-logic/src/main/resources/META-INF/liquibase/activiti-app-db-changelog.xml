@@ -7,10 +7,10 @@
 	<changeSet id="1" author="activiti">
     
         <!-- Hibernate sequence table -->
-        <createTable tableName="hibernate_sequences">
+        <!--<createTable tableName="hibernate_sequences">
             <column name="sequence_name" type="varchar(255)" />
             <column name="sequence_next_hi_value" type="integer" />
-        </createTable>
+        </createTable>-->
 
 		<createTable tableName="ACT_IDM_PERSISTENT_TOKEN">
             <column name="series" type="varchar(255)">
